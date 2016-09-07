@@ -4,15 +4,33 @@ public class HelloWorld
 {
     public static void main(String[] args) 
     {
-        System.out.println("Hello World!");
-        Person p = createPerson();
-        p.age = 15;
-        System.out.println(p.age);
+        Person rachel = new Person(10, "Rachel", "Lamfun");
+        BankAccount ba = new BankAccount(15000.0);
+        
+        rachel.ba = ba;
+        rachel.whoIsThisPerson();
+        
+        int numberOfMonths = checkDoubleYourCD(rachel);
+        System.out.println("The number of months it takes to double your money is: " + numberOfMonths);
     }
     
-    public static Person createPerson()
+    public static int checkDoubleYourCD(Person p)
     {
-        Person p = new Person();
-        return p;
+        boolean numberOfMonthsFound = false;
+        double thisPersonsCD = p.ba.getCDAmount();
+        int count = 0;
+        double amount = thisPersonsCD;
+        
+        while (!numberOfMonthsFound)
+        {
+            amount = p.ba.applyInterest(amount);
+            count = count + 1;
+            
+            if (amount >= thisPersonsCD*2)
+            {
+                numberOfMonthsFound = true;
+            }
+        }
+        return count;
     }
 }
