@@ -27,8 +27,9 @@ public class Tester
                 players[i].setName(name); //Assigns name to player class array
                 players[i].setPlayerNum(i); //Assigns the number to the player class array
                 System.out.println(players[i].getName()); //debugging purposes only
+                currentPlayer = players[i];
             }
-
+          
             currentPlayer.setName(players[0].getName()); //sets the name of the currentPlayer to that of player 1
 
             System.out.printf("How many Rounds would you like to play?");
