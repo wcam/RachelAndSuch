@@ -12,11 +12,12 @@ public class Game
 	String puzzleStr;
 	char[] puzzle; 
 	char[] puzzleHidden;
-	Wheel wheel = new Wheel();
+	Wheel wheel;
         int roundCount;
         
         public Game()
         {
+            wheel = new Wheel();
             maxPlayerNum = 99;
             players = new Player[maxPlayerNum];
             currentPlayer = new Player();
@@ -25,7 +26,7 @@ public class Game
 	public void nextPlayer()
         {
             System.out.println(players[0].getName());
-            
+
             players[currentPlayerNum].addRoundBalance(currentPlayer.getRoundBalance() - players[currentPlayerNum].getRoundBalance());
             currentPlayer.setRoundBalance(0);
             
