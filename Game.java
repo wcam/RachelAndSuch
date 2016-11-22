@@ -88,18 +88,26 @@ public class Game
         }
     }
 	
+	// Shouldnt the wheel spin?  or a player spins the wheel? 
+	// Player rachel = new Player();
+	// rachel.spin(wheel);
+	// or currentPlayer.spin(wheel);  
     public void spin()
     {
-        int spin = wheel.spin(); //sets spin to a value obtained from the wheel.spin method
+        int spin = wheel.spin();
 
         if(spin == 99)
         { 
-                bankrupt(); //if RNG returned bankrupt, call bankrupt method, which leads to next player after setting round balance to 0
+		// if someone lands on 99, then bankrupt?  what goes bankrupt and why?  its unclear what 99 means or why
+                bankrupt();
         }
         else if (spin == 98)
         {
                 System.out.printf("\nSorry Lose a turn"); //if RNG returned lose a turn, calls next player
-                nextPlayer();
+                
+		// it seems like this gets called a lot from many different methods :(
+		// if we were to try to debug and fix 
+		nextPlayer();
         }
         else 
         {
@@ -164,8 +172,10 @@ public class Game
         return puzzle; //returns the hidden puzzle
     }
 
+    // better method name; more accurate description of what it accomplishes
     public boolean checkGuess(String checkStr)
     {
+	// this is harder to understand because of the variable names.  ahhh whats going on?
         System.out.println(puzzle);
 
         int matchCheck = 0;
@@ -188,6 +198,9 @@ public class Game
         }
     }
 
+	// Not trying to be picky, but this is doing waaaaay too much for one method!  
+	// what if one of the loops isn't working right and the method was returning the wrong thing? 
+	// you'd have to debug every single loop!
     public int checkForMatch(char c)
     {
             int count = 0;
@@ -222,6 +235,7 @@ public class Game
             }
             else
             {
+		    // printf needs to be shot.  just sayin
                 System.out.printf("\nCongratulations there were %d matches", count);	
             }
             return count;
