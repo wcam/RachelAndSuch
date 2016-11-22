@@ -1,23 +1,36 @@
+package wheeloffortune;
+
 import java.util.Scanner;
 
 public class Game 
 {
-	Player[] players = new Player[99]; //instantiates the players array
-	static Player currentPlayer = new Player(); //creates a current player placeholder object
-	int currentPlayerNum = 0; //keeps track of which player's turn it is
-	static int maxPlayerNum = 0; //the number of players
-	int prize = 0; //the result of spinning the wheel
-	String puzzleStr; //creates the puzzle string
-	static char[] puzzle; //creates the puzzle char array which the string will be converted into
-	char[] puzzleHidden; //creates a second puzzle to hold the encrypted values
+	Player[] players;
+	Player currentPlayer;
+	int currentPlayerNum = 0;
+	int maxPlayerNum;
+	int prize = 0;
+	String puzzleStr;
+	char[] puzzle; 
+	char[] puzzleHidden;
 	Wheel wheel = new Wheel();
+        int roundCount;
+        
+        public Game()
+        {
+            maxPlayerNum = 99;
+            players = new Player[maxPlayerNum];
+            currentPlayer = new Player();
+        }
         
 	public void nextPlayer()
-        {							//loads in the next player into the current player object
+        {
             System.out.println(players[0].getName());
+            
             players[currentPlayerNum].addRoundBalance(currentPlayer.getRoundBalance() - players[currentPlayerNum].getRoundBalance());
             currentPlayer.setRoundBalance(0);
+            
             System.out.println(maxPlayerNum);
+            
             if(currentPlayerNum == maxPlayerNum-1)
             {
                 currentPlayerNum = 0;
@@ -29,6 +42,8 @@ public class Game
             currentPlayer.setRoundBalance(players[currentPlayerNum].getRoundBalance());
             currentPlayer.setGameBalance(players[currentPlayerNum].getGameBalance());
             currentPlayer.setName(players[currentPlayerNum].getName());
+
+            // not sure how a game is supposed to nextPlayer, and while its nextPlayering, it plays? lol
             play();
 	}
 	
@@ -110,7 +125,7 @@ public class Game
             nextPlayer(); //calls the next player
 	}
 	
-	public static char[] convertToHidden(char[] puzzleHidden)
+	public char[] convertToHidden(char[] puzzleHidden)
 	{
             int i = 0;
             while(i < puzzleHidden.length)
@@ -132,8 +147,10 @@ public class Game
 	public boolean checkGuess(String checkStr)
         {
             System.out.println(puzzle);
+            
             int matchCheck = 0;
             char[] check = checkStr.toCharArray();
+            
             for(int i = 0; i < check.length; i++)
             { //cycles through the array and compares it against what was entered
                 if(check[i] == puzzle[i])
@@ -154,26 +171,34 @@ public class Game
 	public int checkForMatch(char c)
 	{
 		int count = 0;
-		if(c == ' '){ //prevents player from entering wrong characters
-			System.out.println("Invalid input");
-			return count;
+                
+		if(c == ' ')
+                { //prevents player from entering wrong characters
+                    System.out.println("Invalid input");
+                    return count;
 		}
-		for(int i = 0; i < puzzle.length ;i++){ //cycles through the puzzle array
-			if(c == puzzleHidden[i]){ 
-				System.out.println("Letter has been used before");
-				return 0;
-			}
+                
+		for(int i = 0; i < puzzle.length ;i++)
+                { //cycles through the puzzle array
+                    if(c == puzzleHidden[i])
+                    { 
+                            System.out.println("Letter has been used before");
+                            return 0;
+                    }
 		}
+                
 		System.out.println(puzzle.length); //debugging purposes
-		for(int i = 0; i < puzzle.length ;i++){ //cycles through the puzzle array
-			if(c == puzzle[i]){ 
-				count++;
-			}
+                
+		for(int i = 0; i < puzzle.length ;i++)
+                {
+                    if(c == puzzle[i])
+                    { 
+                            count++;
+                    }
 		}
 		if(count == 0) 
-                
                 {
-			System.out.println("Sorry there were no Matches found");
+                    System.out.println("Sorry there were no Matches found");
 		}
 		else
                 {
