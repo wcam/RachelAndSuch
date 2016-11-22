@@ -2,19 +2,25 @@ package wheeloffortune;
 
 import java.util.Scanner;
 
+// Hope the comments help.  I think some of the suggestions could help make it easier for us to follow how
+// the pieces of the project fit together
 public class Game 
 {
+    // Each game has a list of players, the current player making a guess,
+    // a limit to the number of players, a puzzle, a wheel, and a prize
+	
     Player[] players;
     Player currentPlayer;
     int currentPlayerNum;
     int maxPlayerNum;
+    char[] puzzleHidden;	// Each game has one puzzle, but multiple rounds?
+    Wheel wheel;	         // Maybe puzzle should be an array of strings?
+    int roundCount;		
+	
     int prize = 0;  // does each round of the game have a prize?  not sure what this does
     String puzzleStr;
     char[] puzzle;  // isnt this what puzzleStr is?
-    char[] puzzleHidden;
-    Wheel wheel;
-    int roundCount;
-
+	
     public Game()
     {
         wheel = new Wheel();
@@ -28,7 +34,8 @@ public class Game
     
     // Game funGame = new Game();
     // funGame.nextPlayer();  
-    // how are things different after this function is called?
+    // how are things different after this method is called?  
+    // perhaps there should be a method that returns a Player object, and that Player will be currentPlayer.
     public void nextPlayer()
     {
         System.out.println(players[0].getName());
