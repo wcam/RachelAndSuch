@@ -21,6 +21,7 @@ public class Game
             maxPlayerNum = 99;
             players = new Player[maxPlayerNum];
             currentPlayer = new Player();
+            currentPlayer.setName("Rachel");
         }
         
 	public void nextPlayer()
@@ -78,7 +79,7 @@ public class Game
 	
 	public void spin()
         {
-            int spin = Wheel.spin(); //sets spin to a value obtained from the wheel.spin method
+            int spin = wheel.spin(); //sets spin to a value obtained from the wheel.spin method
 
             if(spin == 99)
             { 
