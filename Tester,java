@@ -1,15 +1,91 @@
 package wheeloffortune;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Tester
 {
-    public static void main(String[] args)
-    {
-        Puzzle p = new Puzzle();
-        p.setPhrases();
-        System.out.println("How many people will be playing? (Minimum of 2)");
+   public static void main(String[] args) throws FileNotFoundException
+   {
+        Player[] players = setPlayers();
+       
+        String filePath = "C:\\Users\\William\\Documents\\NetBeansProjects\\wheeloffortune\\src\\wheeloffortune\\phrases.txt";
+        Puzzle[] puzzles = setPuzzles(filePath);
 
-        Game theGame = new Game();
+        Game theGame = new Game(players, puzzles);
+   }
+   
+   public static ArrayList<String> setPhrasesFromFile(String path)  throws FileNotFoundException
+   {
+        File inputFile = new File(path);
+        Scanner in = new Scanner(inputFile);
+        ArrayList<String> phrases = new ArrayList<String>();
+        
+        while (in.hasNext())
+        {
+            String phrase = in.nextLine();
+            phrases.add(phrase);
+        }
+        return phrases;
+   }
+   
+   public static Player[] setPlayers()
+   {
+        int numberOfPlayers = getUserInt("How many players? ");
+        Player[] players = new Player[numberOfPlayers];
+        
+        for (int i = 0; i < players.length; i++)
+        {
+            players[i] = new Player();
+            
+            String name = getUserInput("Enter player name: ");
+            players[i].setName(name);
+        }
+        
+        return players;
+   }
+   
+   public static Puzzle[] setPuzzles(String filePath) throws FileNotFoundException
+   {
+       ArrayList<String> phrases = setPhrasesFromFile(filePath);
+       Puzzle[] puzzles = new Puzzle[phrases.size()];
+       
+       for (int i = 0; i < puzzles.length; i++)
+       {
+           puzzles[i] = new Puzzle();
+           
+           String phrase = phrases.get(i);
+           puzzles[i].setPhrase(phrase);
+       }
+       
+       return puzzles;
+   }
+   
+   public static String getUserInput(String message)
+   {
+       System.out.println(message);
+       Scanner scanner = new Scanner(System.in);
+       
+       String response = scanner.next();
+       return response;
+   }
+   
+   public static int getUserInt(String message)
+   {
+       System.out.println(message);
+       Scanner scanner = new Scanner(System.in);
+       
+       int response = scanner.nextInt();
+       return response;
+   }
+   
+   public static int randomNumber(int number)
+   {
+        Random rn = new Random();
+        int randomNumber = rn.nextInt(number);
+        
+        return randomNumber;
     }
 }
