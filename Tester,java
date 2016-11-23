@@ -4,47 +4,12 @@ import java.util.Scanner;
 
 public class Tester
 {
-        public static void main(String[] args)
-        {
-            Game theGame = new Game();
-            int roundCount = 0; //keeps track of the number of rounds
-            Player currentPlayer = new Player();
-            
-            int maxPlayerNum = 0;
-            System.out.printf("Welcome to Wheel of Fortune!!\n\n");
-            System.out.println("How many people will be playing? (Minimum of 4)");
-            //left out the minimum of 4 code to make it easier to debug
-            Scanner p = new Scanner(System.in);
-            maxPlayerNum = p.nextInt(); //takes in the number of players
-            Player[] players = new Player[maxPlayerNum]; //defines the size of the players array
+    public static void main(String[] args)
+    {
+        Puzzle p = new Puzzle();
+        p.setPhrases();
+        System.out.println("How many people will be playing? (Minimum of 2)");
 
-            for (int i = 0; i < maxPlayerNum; i++)
-            { //loop for assigning the player number and the name
-                players[i] = new Player();
-                System.out.printf("Enter Player %d Name: ", i+1);
-                Scanner n = new Scanner(System.in);
-                String name = n.next();
-                players[i].setName(name); //Assigns name to player class array
-                players[i].setPlayerNum(i); //Assigns the number to the player class array
-                System.out.println(players[i].getName()); //debugging purposes only
-                currentPlayer = players[i];
-            }
-          
-            currentPlayer.setName(players[0].getName()); //sets the name of the currentPlayer to that of player 1
-
-            System.out.printf("How many Rounds would you like to play?");
-            Scanner round = new Scanner(System.in);
-            roundCount = round.nextInt(); //obtains the number of rounds
-
-            while(roundCount > 0)
-            {   //loop to determine when the rounds are done.
-                String puzzleStr = "testing_one_two_three"; //temporarily hard-coded to get proof of concept done
-                char[] puzzle = puzzleStr.toCharArray(); //casts the puzzle string to a char array
-                char[] puzzleHidden = puzzleStr.toCharArray(); //duplicates the puzzle to allow for one to be converted
-                theGame.convertToHidden(puzzleHidden);	//hides the puzzle	
-                System.out.println(puzzle);
-                System.out.println(puzzleHidden);
-                theGame.play();
-            }
-        }
+        Game theGame = new Game();
+    }
 }
