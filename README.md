@@ -2,7 +2,7 @@
 
 Before you run the program, change the filePath variable in Tester.main() to a text file with phrases in it. <br/> <br/>
 
-Example file.txt: <br/>
+<b>Example file.txt:</b> <br/>
 Some phrase of some sort <br/>
 This is another phrase <br/>
 A bunch of text <br/>
