@@ -11,7 +11,7 @@ public class Tester
    {
         Player[] players = setPlayers();
        
-        String filePath = "C:\\Users\\William\\Documents\\NetBeansProjects\\wheeloffortune\\src\\wheeloffortune\\phrases.txt";
+        String filePath = "C:\\Desktop\\phrases.txt";
         Puzzle[] puzzles = setPuzzles(filePath);
 
         Game theGame = new Game(players, puzzles);
