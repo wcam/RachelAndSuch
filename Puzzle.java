@@ -12,9 +12,17 @@ public class Puzzle
    
    public String phrase;
    public boolean solved;
+   public String category;
    
    public void setPhrase(String phrase)
    {
        this.phrase = phrase;
    }
+   
+   public void setCategory(String category)
+   {
+       this.category = category;
+   }
 }
+
+
