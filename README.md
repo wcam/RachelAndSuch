@@ -28,4 +28,3 @@ Some phrase of some sort <br/>
 This is another phrase <br/>
 A bunch of text <br/>
 Some phrase of some sort <br/>
-This is another phrase <br/>
