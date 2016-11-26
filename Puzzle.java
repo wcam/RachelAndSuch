@@ -23,6 +23,10 @@ public class Puzzle
    {
        this.category = category;
    }
+   
+   @Override
+   public String toString()
+   {
+       return "Phrase: " + phrase + ", Category: " + category;
+   }
 }
-
-
