@@ -15,7 +15,7 @@ public class Player
    {
        if(guess == p.phrase)
        {
-       	p.solved = true;
+            p.solved = true;
        }
    }
    
@@ -33,7 +33,7 @@ public class Player
        // spinWheel() if 1
    	if(spinSolve == 1)
    	{
-   	spinWheel();
+            spinWheel();
    	}       
    	// solvePuzzle(String guess) if 2
    	else if(spinSolve == 2)
