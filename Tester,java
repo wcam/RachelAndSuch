@@ -11,10 +11,10 @@ public class Tester
    {
         Player[] players = setPlayers();
        
-        String filePath = "C:\\Desktop\\phrases.txt";
+        String filePath = "C:\\phrases.txt";
         Puzzle[] puzzles = setPuzzles(filePath);
 
-        Game theGame = new Game(players, puzzles);
+        Game wof = new Game(players, puzzles);
    }
    
    public static ArrayList<String> setPhrasesFromFile(String path)  throws FileNotFoundException
@@ -56,6 +56,26 @@ public class Tester
        {
            puzzles[i] = new Puzzle();
            
+           if (i < 5)
+           {
+               puzzles[i].setCategory("category 1");
+           }
+           else if (i < 10)
+           {
+               puzzles[i].setCategory("category 2");
+           }
+           else if (i < 15)
+           {
+               puzzles[i].setCategory("category 3");
+           }
+           else if (i < 20)
+           {
+               puzzles[i].setCategory("category 4");
+           }
+           else
+           {
+                puzzles[i].setCategory("category 5");
+           }
            String phrase = phrases.get(i);
            puzzles[i].setPhrase(phrase);
        }
