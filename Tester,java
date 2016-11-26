@@ -58,23 +58,23 @@ public class Tester
            
            if (i < 5)
            {
-               puzzles[i].setCategory("category 1");
+               puzzles[i].setCategory("On the Map");
            }
            else if (i < 10)
            {
-               puzzles[i].setCategory("category 2");
+               puzzles[i].setCategory("Event");
            }
            else if (i < 15)
            {
-               puzzles[i].setCategory("category 3");
+               puzzles[i].setCategory("Movie Title");
            }
            else if (i < 20)
            {
-               puzzles[i].setCategory("category 4");
+               puzzles[i].setCategory("Before and After");
            }
            else
            {
-                puzzles[i].setCategory("category 5");
+                puzzles[i].setCategory("What Are You Doing?");
            }
            String phrase = phrases.get(i);
            puzzles[i].setPhrase(phrase);
@@ -108,4 +108,9 @@ public class Tester
         
         return randomNumber;
     }
+   
+   public static int randomNumber(int min, int max)
+   {
+       return (int)(Math.random() * max + min);
+   }
 }
