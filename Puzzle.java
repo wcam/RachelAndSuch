@@ -48,11 +48,31 @@ public class Puzzle
        return tempPhrase;
    }
    
+   public boolean getSolved()
+   {
+       return solved;
+   }
+   
+   public String getHiddenPhrase()
+   {
+       String x = "";
+       for (int i = 0; i < hiddenPhrase.length; i++)
+       {
+           x = x + hiddenPhrase[i];
+       }
+       return x;
+   }
+   
+   public String getPhrase()
+   {
+       return Arrays.toString(phrase);
+   }
+   
    @Override
    public String toString()
    {
        String result = "";
-       result = "Phrase: " + Arrays.toString(phrase) + ", Hidden phrase: " + Arrays.toString(hiddenPhrase) + ", Category: " + category;
+       result = "Phrase: " + getPhrase() + ", Category: " + category;
        return result;
    }
 }
