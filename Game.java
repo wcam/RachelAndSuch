@@ -34,6 +34,7 @@ public class Game
        {
            Puzzle p = new Puzzle();
            p = getPuzzleToSolve();
+           System.out.println(p.getPhrase());
            
            for (int j = 0; j < players.length; j++)
            {
@@ -64,8 +65,7 @@ public class Game
    {
        int randomCategory = getRandomCategory();
        Puzzle p = getRandomPuzzle(randomCategory);
-       System.out.println("The puzzle for this game is : " + p.getHiddenPhrase());
-       System.out.println(p.toString());
+
        return p;
    }
    
