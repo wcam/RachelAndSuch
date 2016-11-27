@@ -32,13 +32,23 @@ public class Game
        printPlayers();
        for (int i = 0; i < numPuzzlesToSolve; i++)
        {
-           Puzzle p = getPuzzleToSolve();
+           Puzzle p = new Puzzle();
+           p = getPuzzleToSolve();
            
            for (int j = 0; j < players.length; j++)
            {
-               if (!p.solved)
+               boolean done = false;
+               while (!done)
                {
-                   solvePuzzle(p, players[j]);
+                   if (!p.getSolved())
+                    {
+                        solvePuzzle(p, players[j]);
+                    }
+                   
+                   if (p.getSolved())
+                   {
+                       done = true;
+                   }
                }
            }
        }
@@ -46,7 +56,7 @@ public class Game
    
    public void solvePuzzle(Puzzle puzzle, Player player)
    {
-       System.out.println("Asking player (" + player.name + ") to spin or solve the puzzle: " + puzzle.toString());
+       System.out.println("Asking player (" + player.name + ") to spin or solve the puzzle: " + puzzle.getHiddenPhrase());
        player.spinOrSolve(puzzle);
    }
    
@@ -54,7 +64,7 @@ public class Game
    {
        int randomCategory = getRandomCategory();
        Puzzle p = getRandomPuzzle(randomCategory);
-       
+       System.out.println("The puzzle for this game is : " + p.getHiddenPhrase());
        System.out.println(p.toString());
        return p;
    }
@@ -68,30 +78,31 @@ public class Game
        {
             switch(category)
             {
-             case 1: 
+             case 0: 
                  randomPuzzleNumber = Tester.randomNumber(0, 4);
                  break;
-             case 2: 
+             case 1: 
                  randomPuzzleNumber = Tester.randomNumber(5, 9);
                  break;
-             case 3: 
+             case 2: 
                  randomPuzzleNumber = Tester.randomNumber(10, 14);
                  break;
-             case 4: 
+             case 3: 
                  randomPuzzleNumber = Tester.randomNumber(15, 19);
                  break;
-             case 5: 
+             case 4: 
                  randomPuzzleNumber = Tester.randomNumber(20, 24);
                  break;
             }
 
-            if (!puzzles[randomPuzzleNumber].solved)
+            boolean alreadySolved = puzzles[randomPuzzleNumber].getSolved();
+            if (alreadySolved == false)
             {
-                //randomPuzzleNumber
+                returnedPuzzle = true;
             }
             else
             {
-
+                System.out.println("Puzzle is already solved!");
             }
         }
        
