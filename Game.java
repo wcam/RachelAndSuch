@@ -28,8 +28,8 @@ public class Game
    public void beginGame()
    {
        printPuzzleData();
+       
        printPlayers();
-
        for (int i = 0; i < numPuzzlesToSolve; i++)
        {
            Puzzle p = getPuzzleToSolve();
@@ -61,26 +61,39 @@ public class Game
    
    public Puzzle getRandomPuzzle(int category)
    {
+       boolean returnedPuzzle = false;
        int randomPuzzleNumber = 0;
        
-       switch(category)
+       while (!returnedPuzzle)
        {
-        case 1: 
-            randomPuzzleNumber = Tester.randomNumber(0, 5);
-            break;
-        case 2: 
-            randomPuzzleNumber = Tester.randomNumber(6, 10);
-            break;
-        case 3: 
-            randomPuzzleNumber = Tester.randomNumber(11, 15);
-            break;
-        case 4: 
-            randomPuzzleNumber = Tester.randomNumber(16, 20);
-            break;
-        case 5: 
-            randomPuzzleNumber = Tester.randomNumber(21, 25);
-            break;
-       }
+            switch(category)
+            {
+             case 1: 
+                 randomPuzzleNumber = Tester.randomNumber(0, 4);
+                 break;
+             case 2: 
+                 randomPuzzleNumber = Tester.randomNumber(5, 9);
+                 break;
+             case 3: 
+                 randomPuzzleNumber = Tester.randomNumber(10, 14);
+                 break;
+             case 4: 
+                 randomPuzzleNumber = Tester.randomNumber(15, 19);
+                 break;
+             case 5: 
+                 randomPuzzleNumber = Tester.randomNumber(20, 24);
+                 break;
+            }
+
+            if (!puzzles[randomPuzzleNumber].solved)
+            {
+                //randomPuzzleNumber
+            }
+            else
+            {
+
+            }
+        }
        
        return puzzles[randomPuzzleNumber];
    }
@@ -92,13 +105,14 @@ public class Game
        
        return categoryNumber;
    }
+   
    public void printPuzzleData()
    {
        System.out.println(" ");
        System.out.println("Puzzles loaded from file: ");
        for (int i = 0; i < puzzles.length; i++)
        {
-           System.out.println("Phrase " + i + ": " + puzzles[i].phrase + ", Category: " + puzzles[i].category);
+           System.out.println(puzzles[i].toString());
        }
        System.out.println(" ");
    }
