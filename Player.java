@@ -15,8 +15,10 @@ public class Player
        }
    }
    
-   public void spinOrSolve(Puzzle p)
+   public boolean spinOrSolve(Puzzle p)
    {
+       boolean successfulGuess = false;
+       
        int choice = Tester.getUserInt("(1) spin (2) solve");
        
        int money = spinWheel();
@@ -38,11 +40,13 @@ public class Player
                 p.hiddenPhrase[k] = p.phrase[k];
                 matches++;
                 roundBalance = roundBalance + money;
+                successfulGuess = true;
             }
         }
         
         System.out.println("Found " + matches + " matches! Round balance: " + roundBalance);
         System.out.println(p.getHiddenPhrase());
+        return successfulGuess;
    }
    
    public void setName(String name)
