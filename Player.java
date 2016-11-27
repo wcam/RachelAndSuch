@@ -13,7 +13,7 @@ public class Player
    }
    public void solvePuzzle(String guess, Puzzle p)
    {
-       if(guess == p.phrase)
+       if(guess == p.phrase.toString())
        {
             p.solved = true;
        }
@@ -21,6 +21,20 @@ public class Player
    
    public void spinOrSolve(Puzzle p)
    {
+       /*
+        int matches = 0;
+        char guess = 'o';
+        char[] puzzlePhrase = p.phrase.toCharArray();
+
+        for (int k = 0; k < p.phrase.length(); k++)
+        {
+            if (puzzlePhrase[k] == guess)
+            {
+                puzzleHidden[k] = puzzle[k];
+                matches++;
+            }
+        }
+                   
    	int spinSolve;
    	String guess;
    	
@@ -44,11 +58,9 @@ public class Player
    	}
    	else
    	{
-   	System.out.println("Invalid selection! Please enter either 1 or 2");
-   	spinOrSolve(p);
-   	}
-
-   	
+            System.out.println("Invalid selection! Please enter either 1 or 2");
+            spinOrSolve(p);
+   	}*/
    }
    public void setName(String n)
    {
