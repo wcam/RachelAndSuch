@@ -1,22 +1,30 @@
 package wheeloffortune;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Random;
 
 public class Puzzle 
 {
-   public static String[] onTheMap = new String[5];
-   public static String[] event = new String[5];
-   public static String[] movieTitle = new String[5];
-   public static String[] beforeAfter = new String[5];
-   public static String[] whatAreYouDoing = new String[5];
-   
-   public String phrase;
    public boolean solved;
    public String category;
    
-   public void setPhrase(String phrase)
+   public char[] phrase;
+   public char[] hiddenPhrase;
+   
+   public void setPhrases(String tempPhrase)
    {
-       this.phrase = phrase;
+       this.phrase = tempPhrase.toCharArray();
+       this.hiddenPhrase = setHiddenPhrase();
+   }
+   
+   public char[] setHiddenPhrase()
+   {
+       char[] thePhraseOfThisObject = new char[phrase.length];
+       thePhraseOfThisObject = phrase.clone();
+       
+       thePhraseOfThisObject = setHiddenPhrase(thePhraseOfThisObject);
+       
+       return thePhraseOfThisObject;
    }
    
    public void setCategory(String category)
@@ -24,9 +32,27 @@ public class Puzzle
        this.category = category;
    }
    
+   public char[] setHiddenPhrase(char[] tempPhrase)
+   {
+       for (int i = 0; i < tempPhrase.length; i++)
+       {
+           if (tempPhrase[i] != ' ')
+           {
+               tempPhrase[i] = '*';
+           }
+           else
+           {
+               tempPhrase[i] = ' ';
+           }
+       }
+       return tempPhrase;
+   }
+   
    @Override
    public String toString()
    {
-       return "Phrase: " + phrase + ", Category: " + category;
+       String result = "";
+       result = "Phrase: " + Arrays.toString(phrase) + ", Hidden phrase: " + Arrays.toString(hiddenPhrase) + ", Category: " + category;
+       return result;
    }
 }
