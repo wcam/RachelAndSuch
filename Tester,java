@@ -21,6 +21,8 @@ public class Tester
    {
         File inputFile = new File(path);
         Scanner in = new Scanner(inputFile);
+        
+        // Used an ArrayList because we don't know how many lines will be in the file
         ArrayList<String> phrases = new ArrayList<String>();
         
         while (in.hasNext())
