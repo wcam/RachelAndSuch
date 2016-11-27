@@ -30,35 +30,45 @@ public class Game
        printPuzzleData();
        
        printPlayers();
+       
        for (int i = 0; i < numPuzzlesToSolve; i++)
        {
            Puzzle p = new Puzzle();
            p = getPuzzleToSolve();
            System.out.println(p.getPhrase());
            
-           for (int j = 0; j < players.length; j++)
-           {
-               boolean done = false;
-               while (!done)
-               {
-                   if (!p.getSolved())
+            boolean done = false;
+            while (!done)
+            {
+                for (int j = 0; j < players.length; j++)
+                {
+                    boolean successfulGuess = true;
+                    while (successfulGuess)
                     {
-                        solvePuzzle(p, players[j]);
+                        if (!p.getSolved())
+                        {
+                            successfulGuess = solvePuzzle(p, players[j]);
+                        }
+
+                        if (p.getSolved())
+                        {
+                            done = true;
+                            break;
+                        }
                     }
-                   
-                   if (p.getSolved())
-                   {
-                       done = true;
-                   }
-               }
-           }
-       }
-   }
+                }
+            }
+        }
+    }
    
-   public void solvePuzzle(Puzzle puzzle, Player player)
+   public boolean solvePuzzle(Puzzle puzzle, Player player)
    {
+       boolean successfulGuess = false;
+       
        System.out.println("Asking player (" + player.name + ") to spin or solve the puzzle: " + puzzle.getHiddenPhrase());
-       player.spinOrSolve(puzzle);
+       successfulGuess = player.spinOrSolve(puzzle);
+       
+       return successfulGuess;
    }
    
    public Puzzle getPuzzleToSolve()
