@@ -7,10 +7,6 @@ public class Player
    public int cashBalance;
    public int roundBalance;
    
-   public void spinWheel()
-   {
-       
-   }
    public void solvePuzzle(String guess, Puzzle p)
    {
        if(guess == p.phrase.toString())
@@ -21,49 +17,41 @@ public class Player
    
    public void spinOrSolve(Puzzle p)
    {
-       /*
+       int choice = Tester.getUserInt("(1) spin (2) solve");
+       
+       int money = spinWheel();
+       System.out.println("The wheel landed on: " + money);
+       
+       String guessInput = Tester.getUserInput("Enter a character: ");
+       char guessLetter = guessInput.charAt(0);
+       
+       System.out.println("PUZZLE: " + p.getHiddenPhrase() + " and you guessed " + guessLetter);
+       
         int matches = 0;
-        char guess = 'o';
-        char[] puzzlePhrase = p.phrase.toCharArray();
-
-        for (int k = 0; k < p.phrase.length(); k++)
+        String puzzlePhrase = p.getHiddenPhrase();
+        char[] thisPuzzle = puzzlePhrase.toCharArray();
+        
+        for (int k = 0; k < thisPuzzle.length; k++)
         {
-            if (puzzlePhrase[k] == guess)
+            if (p.phrase[k] == guessLetter)
             {
-                puzzleHidden[k] = puzzle[k];
+                p.hiddenPhrase[k] = p.phrase[k];
                 matches++;
+                roundBalance = roundBalance + money;
             }
         }
-                   
-   	int spinSolve;
-   	String guess;
-   	
-   	Scanner scanner = new Scanner(System.in);
-   	// print the puzzle as it currently is
-   	System.out.println(p.phrase);
-       // get response
-   	System.out.println("Would you like to spin [1] or solve [2]?");
-   	spinSolve = scanner.nextInt();
-       // spinWheel() if 1
-   	if(spinSolve == 1)
-   	{
-            spinWheel();
-   	}       
-   	// solvePuzzle(String guess) if 2
-   	else if(spinSolve == 2)
-   	{
-   	System.out.println("Please enter your guess: ");
-   	guess = scanner.next();
-   	solvePuzzle(guess, p);
-   	}
-   	else
-   	{
-            System.out.println("Invalid selection! Please enter either 1 or 2");
-            spinOrSolve(p);
-   	}*/
+        
+        System.out.println("Found " + matches + " matches! Round balance: " + roundBalance);
+        System.out.println(p.getHiddenPhrase());
    }
-   public void setName(String n)
+   
+   public void setName(String name)
    {
-   	this.name = n;
+   	this.name = name;
+   }
+   
+   public int spinWheel()
+   {
+       return Tester.randomNumber(0, 500);
    }
 }
