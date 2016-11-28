@@ -167,6 +167,7 @@ public class Game
    {
        for(int i = 0; i < players.length; i++)
        {
+           System.out.println("Current player round balance: $" + players[i].getRoundBalance());
            players[i].spinOrSolve(p);
        }
    }
