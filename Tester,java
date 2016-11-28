@@ -83,6 +83,7 @@ public class Tester
            }
            String phrase = phrases.get(i);
            puzzles[i].setPhrases(phrase);
+           puzzles[i].setPuzzleNumber(i);
        }
        
        return puzzles;
@@ -93,7 +94,7 @@ public class Tester
        System.out.println(message);
        Scanner scanner = new Scanner(System.in);
        
-       String response = scanner.next();
+       String response = scanner.nextLine();
        return response;
    }
    
@@ -106,7 +107,7 @@ public class Tester
        System.out.println("");
        return response;
    }
-   
+  
    public static int randomNumber(int number)
    {
         Random rn = new Random();
