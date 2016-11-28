@@ -19,7 +19,9 @@ public class Player
    {
        boolean successfulGuess = false;
        
+       System.out.println(" ");
        System.out.println("It's your turn " + getName() + "! Spin or solve? " + p.getHiddenPhrase());
+       System.out.println("You currently have $" + getRoundBalance() + " for this round!");
        System.out.println("Puzzle #" + p.getPuzzleNumber() + ", " + p.getCategory());
        int choice = Tester.getUserInt("(1) spin (2) solve");
        
