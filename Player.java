@@ -35,6 +35,7 @@ public class Player
                else if (money == 0000)
                {
                    System.out.println("You are BANKRUPT! Ouch! :(");
+                   System.out.println("¯\\_(ツ)_/¯");
                    setRoundBalance(0);
                }
                else
