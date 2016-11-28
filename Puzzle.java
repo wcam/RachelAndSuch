@@ -8,6 +8,7 @@ public class Puzzle
    public boolean solved;
    public String category;
    
+   public int puzzleNumber;
    public char[] phrase;
    public char[] hiddenPhrase;
    
@@ -32,6 +33,16 @@ public class Puzzle
        this.category = category;
    }
    
+   public void setPuzzleNumber(int pn)
+   {
+       this.puzzleNumber = pn;
+   }
+   
+   public int getPuzzleNumber()
+   {
+       return puzzleNumber;
+   }
+   
    public char[] setHiddenPhrase(char[] tempPhrase)
    {
        for (int i = 0; i < tempPhrase.length; i++)
@@ -46,6 +57,11 @@ public class Puzzle
            }
        }
        return tempPhrase;
+   }
+   
+   public void setSolved(boolean solved)
+   {
+       this.solved = solved;
    }
    
    public boolean getSolved()
@@ -65,14 +81,20 @@ public class Puzzle
    
    public String getPhrase()
    {
-       return Arrays.toString(phrase);
+       String myString = new String(phrase);
+       return myString;
    }
    
    @Override
    public String toString()
    {
-       String result = "";
-       result = "Phrase: " + getPhrase() + ", Category: " + category;
+       String result = new String();
+       result = "Puzzle #" + getPuzzleNumber() + ", Phrase: " + getPhrase() + ", Category: " + category;
        return result;
+   }
+   
+   public String getCategory()
+   {
+       return category;
    }
 }
