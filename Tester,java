@@ -118,6 +118,6 @@ public class Tester
    
    public static int randomNumber(int min, int max)
    {
-       return (int)(Math.random() * max + min);
+       return (int) (Math.random() * (max - min)) + min;
    }
 }
