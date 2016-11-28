@@ -33,12 +33,13 @@ public class Game
        
        for (int i = 0; i < numPuzzlesToSolve; i++)
        {
+           resetRoundBalances();
+           
            Puzzle p = new Puzzle();
            p = getPuzzleToSolve();
            System.out.println(p.getPhrase());
            
            System.out.println(" ");
-           resetRoundBalances();
            System.out.println("*** NEW ROUND! ***");
 
             boolean done = false;
