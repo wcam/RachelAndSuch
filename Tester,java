@@ -9,12 +9,23 @@ public class Tester
 {
    public static void main(String[] args) throws FileNotFoundException
    {
-        Player[] players = setPlayers();
+       int beginOrQuit = getUserInt("Start WOF Game (1) or Exit (2)?");
        
-        String filePath = "C:\\phrases.txt";
-        Puzzle[] puzzles = setPuzzles(filePath);
+       switch (beginOrQuit)
+       {
+           case 1:
+               Player[] players = setPlayers();
+       
+                String filePath = "C:\\Users\\William\\Documents\\NetBeansProjects\\wheeloffortune\\src\\wheeloffortune\\phrases.txt";
+                Puzzle[] puzzles = setPuzzles(filePath);
 
-        Game wof = new Game(players, puzzles);
+                Game wof = new Game(players, puzzles);
+                break;
+           case 2:
+               System.out.println("Thanks for playing?");
+               System.out.println("¯\\_(ツ)_/¯");
+               break;
+       }
    }
    
    public static ArrayList<String> setPhrasesFromFile(String path)  throws FileNotFoundException
