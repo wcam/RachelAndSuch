@@ -85,16 +85,16 @@ public class Puzzle
        return myString;
    }
    
+    public String getCategory()
+   {
+       return category;
+   }
+   
    @Override
    public String toString()
    {
        String result = new String();
        result = "Puzzle #" + getPuzzleNumber() + ", Phrase: " + getPhrase() + ", Category: " + category;
        return result;
-   }
-   
-   public String getCategory()
-   {
-       return category;
    }
 }
