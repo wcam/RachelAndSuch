@@ -37,6 +37,10 @@ public class Game
            p = getPuzzleToSolve();
            System.out.println(p.getPhrase());
            
+           System.out.println(" ");
+           resetRoundBalances();
+           System.out.println("*** NEW ROUND! ***");
+
             boolean done = false;
             while (!done)
             {
@@ -56,16 +60,27 @@ public class Game
                             break;
                         }
                     }
+                    System.out.println(" ");
+                    System.out.println(players[j].getName() + "'s turn is over! Their cash for this round so far is $" + players[j].getRoundBalance());
+                    System.out.println(" ");
                 }
             }
         }
+       
+       printPlayers();
     }
+   
+   public void resetRoundBalances()
+   {
+       for (int i = 0; i < players.length; i++)
+       {
+           players[i].setRoundBalance(0);
+       }
+   }
    
    public boolean solvePuzzle(Puzzle puzzle, Player player)
    {
        boolean successfulGuess = false;
-       
-       System.out.println("Asking player (" + player.name + ") to spin or solve the puzzle: " + puzzle.getHiddenPhrase());
        successfulGuess = player.spinOrSolve(puzzle);
        
        return successfulGuess;
@@ -122,8 +137,6 @@ public class Game
    public int getRandomCategory()
    {
        int categoryNumber = Tester.randomNumber(5);
-       System.out.println("Random category for this game: " + categoryNumber);
-       
        return categoryNumber;
    }
    
@@ -144,7 +157,7 @@ public class Game
        System.out.println("Players: ");
        for (int i = 0; i < players.length; i++)
        {
-           System.out.println(players[i].name);
+           System.out.println(players[i].getName() + ": Game balance: $" + players[i].getCashBalance());
        }
        System.out.println(" ");
    }
